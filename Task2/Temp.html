@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f06, #09f, #0f6, #f60);
+            background-size: 400% 400%;
+            animation: gradient 10s linear infinite;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Temperature Converter</h1>
+        <label for="celsius">Celsius:</label>
+        <input type="number" id="celsius" placeholder="Enter Celsius temperature">
+        <label for="fahrenheit">Fahrenheit:</label>
+        <input type="number" id="fahrenheit" placeholder="Enter Fahrenheit temperature">
+        <button onclick="convert()">Convert</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function convert() {
+            var celsius = parseFloat(document.getElementById("celsius").value);
+            var fahrenheit = parseFloat(document.getElementById("fahrenheit").value);
+
+            if (!isNaN(celsius) && isNaN(fahrenheit)) {
+                fahrenheit = (celsius * 9/5) + 32;
+                document.getElementById("result").innerHTML = celsius + " Celsius = " + fahrenheit.toFixed(2) + " Fahrenheit";
+            } else if (isNaN(celsius) && !isNaN(fahrenheit)) {
+                celsius = (fahrenheit - 32) * 5/9;
+                document.getElementById("result").innerHTML = fahrenheit + " Fahrenheit = " + celsius.toFixed(2) + " Celsius";
+            } else {
+                document.getElementById("result").innerHTML = "Please enter one temperature value.";
+            }
+        }
+    </script>
+</body>
+</html>
